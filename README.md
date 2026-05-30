@@ -1,10 +1,30 @@
 # prompt-rewriter
 
-A Claude Code skill that takes any system prompt you use today and rewrites it into a clean, outcome-based format built for modern AI models.
+A Claude Code skill that audits and rewrites system prompts — removing instructions that were written for 2022-era models and now constrain modern ones.
 
-Most operators learned to write prompts in 2022–2023 when models needed heavy scaffolding. Claude 4 and GPT-4o don't need any of that. Keeping it in your prompts actively degrades output.
+## Why this matters
 
-This skill strips the bloat and rewrites to a 4-component format: **Outcome / Constraints / Tools / Coordination**.
+Most operators wrote their prompts when models needed heavy scaffolding: step-by-step procedures, role-play preambles, retry logic, format micromanagement. Claude 4 and GPT-4o don't need any of that.
+
+Anthropic's own research ("Tracing Thoughts", 2024) shows modern Claude performs sophisticated internal reasoning without being explicitly instructed to — it plans ahead, runs parallel computation, and uses multi-step inference autonomously. When you write step-by-step procedures into a prompt, you're not guiding the model. You're constraining a reasoning path it would have chosen better on its own.
+
+This is what Anthropic calls "compensating complexity" — instructions added to compensate for model limitations that no longer exist.
+
+## What the expected outcome is
+
+**Primary: better, more consistent outputs.**
+
+Removing procedural constraints lets the model pick the optimal reasoning path per input rather than following a fixed script. Clear outcomes + hard constraints produce predictable behavior. Vague procedural instructions produce variable behavior because each model run interprets the steps differently.
+
+Anthropic's prompt engineering guidance is explicit: "Prefer general instructions over prescriptive steps. A prompt like 'think thoroughly' often produces better reasoning than a hand-written step-by-step plan. Claude's reasoning frequently exceeds what a human would prescribe." ([source](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview))
+
+**Secondary: token cost reduction.**
+
+Shorter prompts cost less per call. This is real — typical rewrites reduce prompt length 30–60% — but it's a byproduct of removing instructions that weren't doing useful work, not the goal itself.
+
+**What this is not:**
+
+Shorter is not always better. Anthropic recommends examples, XML structure, explicit context, and precise success criteria — all of which can make prompts longer. The target is removing the *right* things (scaffolding, duct-tape), not minimizing word count.
 
 ## Install
 
@@ -20,8 +40,6 @@ Then use `/prompt-rewriter` in any Claude Code session.
 2. **Rewrites** to the 4-component format — keeps only what matters
 3. **Shows a diff** — what was kept, deleted, reworded, and why
 4. **Flags risk items** — things deleted that you should test before deploying
-
-Typical result: 30–60% shorter prompt, more consistent output.
 
 ## Example prompts
 
@@ -55,6 +73,11 @@ Then run /prompt-rewriter on the result.
 | Coordination | Multi-agent handoffs (write "N/A" if single-agent) |
 
 Everything else gets cut.
+
+## References
+
+- Anthropic — [Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
+- Anthropic Research — [Tracing the thoughts of a large language model](https://www.anthropic.com/research/tracing-thoughts-language-model) (2024)
 
 ---
 
