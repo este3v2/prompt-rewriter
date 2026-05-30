@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "prompt-rewriter",
+  "description": "Rewrite bloated AI prompts into clean, outcome-based format. Strips compensating complexity built for 2022 models from your 2026 workflows.",
+  "owner": {
+    "name": "Esteban Pinto",
+    "email": "esteban@brainup.cl"
+  },
+  "plugins": [
+    {
+      "name": "prompt-rewriter",
+      "description": "Classify, rewrite, and diff any system prompt. Removes scaffolding, duct-tape, and format micromanagement. Outputs clean 4-component format with before/after diff and risk items.",
+      "source": "./",
+      "category": "productivity",
+      "author": {
+        "name": "Esteban Pinto",
+        "email": "esteban@brainup.cl"
+      },
+      "homepage": "https://github.com/este3v2/prompt-rewriter"
+    }
+  ]
+}

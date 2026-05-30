@@ -1,0 +1,10 @@
+{
+  "name": "prompt-rewriter",
+  "version": "1.0.0",
+  "description": "Rewrite any system prompt by stripping compensating complexity. Outputs clean 4-component outcome-based format with before/after diff and risk items.",
+  "author": {
+    "name": "Esteban Pinto",
+    "email": "esteban@brainup.cl"
+  },
+  "homepage": "https://github.com/este3v2/prompt-rewriter"
+}
