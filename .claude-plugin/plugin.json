@@ -1,6 +1,6 @@
 {
   "name": "prompt-rewriter",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Rewrite any system prompt by stripping compensating complexity. Outputs clean 4-component outcome-based format with before/after diff and risk items.",
   "author": {
     "name": "Esteban Pinto",

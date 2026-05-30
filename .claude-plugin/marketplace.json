@@ -11,6 +11,7 @@
       "name": "prompt-rewriter",
       "description": "Classify, rewrite, and diff any system prompt. Removes scaffolding, duct-tape, and format micromanagement. Outputs clean 4-component format with before/after diff and risk items.",
       "source": "./",
+      "version": "1.1.0",
       "category": "productivity",
       "author": {
         "name": "Esteban Pinto",
