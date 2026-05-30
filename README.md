@@ -103,8 +103,16 @@ The original prompt narrated its own process in every response — the scaffoldi
 
 The rewritten prompt will not always be better on the first try. The risk items section exists for a reason. Test on 3–5 real inputs before replacing your original.
 
-## References
+## Grounded in Anthropic's own guidance
 
+This skill applies Anthropic's prompt engineering best practices directly.
+
+Anthropic's documentation for Claude 4.x states that modern models calibrate response length and complexity automatically, and reason internally without needing step-by-step procedures. Their recommendation: specify outcomes and constraints — not how to achieve them.
+
+That is exactly what this skill does. Every line classified as scaffolding or duct-tape is a line that constrains a model Anthropic designed to reason without it.
+
+**References:**
+- Anthropic — [Prompting best practices for Claude's latest models](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
 - Anthropic — [Prompt engineering overview](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview)
 - Anthropic Research — [Tracing the thoughts of a large language model](https://www.anthropic.com/research/tracing-thoughts-language-model) (2024)
 
