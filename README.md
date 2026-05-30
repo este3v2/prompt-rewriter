@@ -6,17 +6,24 @@ A Claude Code skill for knowledge workers who use Claude or ChatGPT daily and wa
 
 Most people build prompts the same way: they get a bad output, they add a line to fix it. Then another. Six months later, the prompt is 400 words and half of it is doing nothing — or worse, quietly limiting what the model can do.
 
-Anthropic's own research shows modern AI models reason internally without needing step-by-step instructions. Keeping old scaffolding in your prompts doesn't guide the model — it constrains it.
+The cost is not aesthetic. It is operational:
 
-This skill audits your prompt, removes what doesn't belong, and rewrites it into a format that works with how these models actually think.
+- **Token cost** — every bloated line runs on every message, every session, every agent call. A 400-word system prompt that could be 100 words burns 300 tokens per turn at scale.
+- **Reliability cost** — contradictory instructions produce inconsistent outputs. Leaner prompts have fewer collision points.
+- **Maintenance cost** — bloated prompts grow. Every new bad output becomes a new duct-tape line. In 6 months you have a prompt nobody can read or reason about.
 
-## What to expect
+The most common finding: **the bloat isn't the problem — it's hiding an empty prompt.** Strip the scaffolding and there is no real outcome underneath. That is the real diagnosis.
 
-- More consistent outputs from prompts you already use
-- A clear diff showing what was kept, removed, and why
-- A list of risk items — things removed that you should test before switching to the new version
+## Where this hits hardest
 
-What it does not promise: the rewritten prompt will always be better on the first try. The risk items section exists for a reason. Test on 3–5 real inputs before replacing your original.
+| Context | Impact | What to rewrite |
+|---|---|---|
+| ClaudeClaw / Cowork agent | Highest | Agent system prompts, Telegram skill flows, SKILL.md files |
+| Claude Code | High | CLAUDE.md instructions, SKILL.md prompts, hook descriptions |
+| Claude.ai Projects | Medium | Project system prompt, custom instructions |
+| Codex | Partial | Task descriptions — 4-section format maps but tooling differs |
+
+Run it on agent system prompts first. That is where a 60% reduction in prompt length translates directly to lower cost and faster, more consistent responses per session.
 
 ## Install
 
@@ -62,6 +69,54 @@ Then rewrite it keeping only outcomes and constraints.
 | Coordination | Handoffs to other agents (write "N/A" if not applicable) |
 
 Everything else gets cut.
+
+## Case study
+
+**Original** — Claude.ai Project system prompt for a content assistant. 318 words. Written over 6 months by adding one fix at a time.
+
+> You are an expert content strategist and writer... When I give you a topic, follow this process: 1. Read through everything carefully and identify the core message. 2. Think about who the target audience is. 3. Identify the best format. 4. Draft the content following the guidelines below. 5. Review your draft before sending... Do NOT sound corporate or formal. Make sure it doesn't sound like AI wrote it. Be thorough and consider all angles. Sound authentic and human. Always proofread before responding. Do NOT make things up...
+
+Classification result: `7 duct-tape · 10 scaffolding · 4 outcomes · 10 constraints`
+
+---
+
+**Rewritten** — 97 words. Same outcomes and constraints. Everything else removed.
+
+```
+## Outcome
+Write LinkedIn posts and Substack articles from topics, ideas, or rough notes.
+When given rough notes, clean the language but preserve the user's voice.
+Every piece opens with a hook. LinkedIn posts end with a question or reframe.
+Substack articles end with a clear takeaway or call to action.
+
+## Constraints
+LinkedIn: 150–300 words · first person · no bullet points in body ·
+no hashtags unless asked · banned words: delve, game-changer, unlock,
+leverage, seamlessly · end with question or reframe
+
+Substack: 600–1,200 words · headers required · no technical jargon ·
+personal story only if the user provides one
+
+Both: ask before writing if anything is unclear
+
+## Tools
+None.
+
+## Coordination
+N/A
+```
+
+**Reduction: 70% fewer words.**
+
+---
+
+**What changed in the output:**
+
+The original prompt narrated its own process in every response — the scaffolding became visible text. The banned word "unlock" slipped through because 30 rules dilute attention. The rewritten prompt has one banned-word constraint, clearly scoped. No internal narration. Forbidden words stay forbidden.
+
+## What it does not promise
+
+The rewritten prompt will not always be better on the first try. The risk items section exists for a reason. Test on 3–5 real inputs before replacing your original.
 
 ## References
 
