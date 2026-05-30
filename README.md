@@ -18,8 +18,7 @@ The most common finding: **the bloat isn't the problem — it's hiding an empty 
 
 | Context | Impact | What to rewrite |
 |---|---|---|
-| ClaudeClaw / Cowork agent | Highest | Agent system prompts, Telegram skill flows, SKILL.md files |
-| Claude Code | High | CLAUDE.md instructions, SKILL.md prompts, hook descriptions |
+| Claude Code | Highest | CLAUDE.md instructions, SKILL.md prompts, agent system prompts |
 | Claude.ai Projects | Medium | Project system prompt, custom instructions |
 | Codex | Partial | Task descriptions — 4-section format maps but tooling differs |
 
@@ -35,15 +34,15 @@ Then use `/prompt-rewriter` in any Claude Code session.
 
 ## How to use it
 
-**Claude Code and ClaudeClaw:** install the skill above, then:
+**Claude Code:** install the skill above, then:
 ```
 /prompt-rewriter
 [paste your prompt]
 ```
 
-**Claude.ai (no install needed):** copy any prompt from [`free/prompts.md`](free/prompts.md) and paste it directly into your chat with your prompt attached. All prompts work without the skill installed.
+**Claude.ai (no install needed):** copy any prompt from [`free/prompts.md`](free/prompts.md) and paste it directly into your chat. All prompts work without the skill installed.
 
-Full prompt library (quick rewrite, full audit, 5-prompt client session, write-from-scratch) is in [`free/prompts.md`](free/prompts.md).
+Full prompt library (quick rewrite, full audit, write-from-scratch) is in [`free/prompts.md`](free/prompts.md).
 
 ## The format it rewrites into
 

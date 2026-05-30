@@ -1,20 +1,19 @@
 # Prompt Rewriter — Free Prompts
 
-These prompts work across Claude Code, ClaudeClaw, and Claude.ai. No paid account required.
+These prompts work in Claude Code and Claude.ai. No paid account required.
 
 ---
 
 ## Which version are you using?
 
-| Platform | How to use these prompts |
+| Platform | How to use |
 |---|---|
 | **Claude Code** | Install the skill (below), then use `/prompt-rewriter` |
-| **ClaudeClaw / Cowork** | Same install command as Claude Code |
 | **Claude.ai (web)** | Skip the install — copy any prompt below and paste it directly into your chat |
 
 ---
 
-## Install (Claude Code and ClaudeClaw only)
+## Install (Claude Code only)
 
 ```bash
 claude plugins marketplace add este3v2/prompt-rewriter
@@ -25,8 +24,6 @@ Then use `/prompt-rewriter` in any session.
 ---
 
 ## Prompt 1 — Quick rewrite
-
-Works in: Claude Code, ClaudeClaw, Claude.ai
 
 Paste this with your prompt attached.
 
@@ -50,8 +47,6 @@ Show me:
 ---
 
 ## Prompt 2 — Full audit then rewrite (recommended)
-
-Works in: Claude Code, ClaudeClaw, Claude.ai
 
 Run this when you want to understand WHY the prompt is bloated before fixing it.
 
@@ -83,35 +78,7 @@ Show the before/after diff and flag anything I should test before replacing the 
 
 ---
 
-## Prompt 3 — 5-prompt client audit
-
-Works in: Claude Code, ClaudeClaw, Claude.ai
-
-Use this in a live session with a client. Takes 5 prompts, produces before/after for each.
-
-```
-I want to audit and rewrite 5 prompts my client uses daily.
-
-For each prompt:
-1. Classify it (outcome / constraint / scaffolding / duct-tape)
-2. Rewrite it using the 4-component format
-3. Show the before/after diff
-4. Give it a complexity score: how bloated was the original (1–10)?
-
-At the end, summarise:
-- Average complexity score across all 5
-- Top 3 patterns of compensating complexity found
-- Recommended next step
-
-Here are the 5 prompts:
-[PASTE PROMPTS HERE]
-```
-
----
-
-## Prompt 4 — Write new prompts correctly from the start
-
-Works in: Claude Code, ClaudeClaw, Claude.ai
+## Prompt 3 — Write new prompts correctly from the start
 
 Use this when starting a new workflow — skips the audit entirely.
 
