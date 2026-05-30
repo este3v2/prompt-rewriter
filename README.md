@@ -1,30 +1,22 @@
 # prompt-rewriter
 
-A Claude Code skill that audits and rewrites system prompts — removing instructions that were written for 2022-era models and now constrain modern ones.
+A Claude Code skill for knowledge workers who use Claude or ChatGPT daily and want more consistent results from the prompts they already have.
 
-## Why this matters
+## The problem it solves
 
-Most operators wrote their prompts when models needed heavy scaffolding: step-by-step procedures, role-play preambles, retry logic, format micromanagement. Claude 4 and GPT-4o don't need any of that.
+Most people build prompts the same way: they get a bad output, they add a line to fix it. Then another. Six months later, the prompt is 400 words and half of it is doing nothing — or worse, quietly limiting what the model can do.
 
-Anthropic's own research ("Tracing Thoughts", 2024) shows modern Claude performs sophisticated internal reasoning without being explicitly instructed to — it plans ahead, runs parallel computation, and uses multi-step inference autonomously. When you write step-by-step procedures into a prompt, you're not guiding the model. You're constraining a reasoning path it would have chosen better on its own.
+Anthropic's own research shows modern AI models reason internally without needing step-by-step instructions. Keeping old scaffolding in your prompts doesn't guide the model — it constrains it.
 
-This is what Anthropic calls "compensating complexity" — instructions added to compensate for model limitations that no longer exist.
+This skill audits your prompt, removes what doesn't belong, and rewrites it into a format that works with how these models actually think.
 
-## What the expected outcome is
+## What to expect
 
-**Primary: better, more consistent outputs.**
+- More consistent outputs from prompts you already use
+- A clear diff showing what was kept, removed, and why
+- A list of risk items — things removed that you should test before switching to the new version
 
-Removing procedural constraints lets the model pick the optimal reasoning path per input rather than following a fixed script. Clear outcomes + hard constraints produce predictable behavior. Vague procedural instructions produce variable behavior because each model run interprets the steps differently.
-
-Anthropic's prompt engineering guidance is explicit: "Prefer general instructions over prescriptive steps. A prompt like 'think thoroughly' often produces better reasoning than a hand-written step-by-step plan. Claude's reasoning frequently exceeds what a human would prescribe." ([source](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview))
-
-**Secondary: token cost reduction.**
-
-Shorter prompts cost less per call. This is real — typical rewrites reduce prompt length 30–60% — but it's a byproduct of removing instructions that weren't doing useful work, not the goal itself.
-
-**What this is not:**
-
-Shorter is not always better. Anthropic recommends examples, XML structure, explicit context, and precise success criteria — all of which can make prompts longer. The target is removing the *right* things (scaffolding, duct-tape), not minimizing word count.
+What it does not promise: the rewritten prompt will always be better on the first try. The risk items section exists for a reason. Test on 3–5 real inputs before replacing your original.
 
 ## Install
 
@@ -34,43 +26,40 @@ claude plugins marketplace add este3v2/prompt-rewriter
 
 Then use `/prompt-rewriter` in any Claude Code session.
 
-## What it does
+## How to use it
 
-1. **Classifies** every line of your prompt as outcome, constraint, scaffolding, or duct-tape
-2. **Rewrites** to the 4-component format — keeps only what matters
-3. **Shows a diff** — what was kept, deleted, reworded, and why
-4. **Flags risk items** — things deleted that you should test before deploying
-
-## Example prompts
-
-**Quick rewrite:**
+**Option 1 — Quick rewrite:**
 ```
 /prompt-rewriter
 
-Here is a system prompt I use regularly. Rewrite it using the
-4-component outcome-based format.
+Here is a prompt I use regularly. Rewrite it into a clean
+outcome-based format. Show me the before/after diff and flag
+anything I should test before using the new version.
 
 [PASTE YOUR PROMPT HERE]
 ```
 
-**Full audit first (recommended):**
+**Option 2 — Audit first (recommended if the prompt is long):**
 ```
 First, classify every line of this prompt as one of:
-- outcome / constraint / scaffolding / duct-tape
+- outcome: defines what the result should be
+- constraint: a rule the model must follow
+- scaffolding: step-by-step instructions the model doesn't need
+- duct-tape: added after a bad output, constraining everything since
 
-Then run /prompt-rewriter on the result.
+Then rewrite it keeping only outcomes and constraints.
 
 [PASTE YOUR PROMPT HERE]
 ```
 
-## The 4-component format
+## The format it rewrites into
 
 | Section | What goes here |
 |---|---|
-| Outcome | What the system must achieve — measurable, specific |
-| Constraints | Hard rules that cannot be violated |
-| Tools | Available tools and when to use them — not how |
-| Coordination | Multi-agent handoffs (write "N/A" if single-agent) |
+| Outcome | What the result must be — specific and measurable |
+| Constraints | Rules that cannot be broken |
+| Tools | Tools available and when to use them (write "None" if none) |
+| Coordination | Handoffs to other agents (write "N/A" if not applicable) |
 
 Everything else gets cut.
 
