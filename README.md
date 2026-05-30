@@ -35,29 +35,15 @@ Then use `/prompt-rewriter` in any Claude Code session.
 
 ## How to use it
 
-**Option 1 — Quick rewrite:**
+**Claude Code and ClaudeClaw:** install the skill above, then:
 ```
 /prompt-rewriter
-
-Here is a prompt I use regularly. Rewrite it into a clean
-outcome-based format. Show me the before/after diff and flag
-anything I should test before using the new version.
-
-[PASTE YOUR PROMPT HERE]
+[paste your prompt]
 ```
 
-**Option 2 — Audit first (recommended if the prompt is long):**
-```
-First, classify every line of this prompt as one of:
-- outcome: defines what the result should be
-- constraint: a rule the model must follow
-- scaffolding: step-by-step instructions the model doesn't need
-- duct-tape: added after a bad output, constraining everything since
+**Claude.ai (no install needed):** copy any prompt from [`free/prompts.md`](free/prompts.md) and paste it directly into your chat with your prompt attached. All prompts work without the skill installed.
 
-Then rewrite it keeping only outcomes and constraints.
-
-[PASTE YOUR PROMPT HERE]
-```
+Full prompt library (quick rewrite, full audit, 5-prompt client session, write-from-scratch) is in [`free/prompts.md`](free/prompts.md).
 
 ## The format it rewrites into
 
