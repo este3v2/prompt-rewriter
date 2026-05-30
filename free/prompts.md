@@ -8,12 +8,13 @@ These prompts work in Claude Code and Claude.ai. No paid account required.
 
 | Platform | How to use |
 |---|---|
-| **Claude Code** | Install the skill (below), then use `/prompt-rewriter` |
+| **Claude Code (CLI)** | Install the skill (below), then use `/prompt-rewriter` |
+| **Claude Desktop** | Install via the Skills panel (same SKILL.md format) |
 | **Claude.ai (web)** | Skip the install — copy any prompt below and paste it directly into your chat |
 
 ---
 
-## Install (Claude Code only)
+## Install (Claude Code and Claude Desktop)
 
 ```bash
 claude plugins marketplace add este3v2/prompt-rewriter
